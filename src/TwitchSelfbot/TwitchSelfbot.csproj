@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NTwitch" Version="0.1.2-build-00006" />
+    <PackageReference Include="NTwitch" Version="0.1.2-build-00007" />
     <PackageReference Include="YamlDotNet" Version="4.2.1" />
   </ItemGroup>
 
