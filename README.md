@@ -8,7 +8,6 @@ token: oi1j2o3i
 
 # Channels the bot will join after connecting to chat
 channels:
-  - timthetatman
   - auxesistv
   - shiralya
 
@@ -24,5 +23,5 @@ events:
     - Thanks for subscribing %user% Kappa
     - Thank you for the sub %user% LUL
   re_sub:
-    - %user% resubscribed for %months% month(s)
+    - Wow! %user% resubscribed for %months% month(s)
 ```
