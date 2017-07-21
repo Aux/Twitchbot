@@ -1,3 +1,5 @@
+Uses NTwitch version `0.1.2-build-00007`
+
 # Twitchbot
 A generic twitch chat bot, provided as an example for the [NTwitch](https://github.com/Aux/NTwitch) library.
 
