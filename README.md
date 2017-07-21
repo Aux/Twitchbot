@@ -1,5 +1,5 @@
-# TwitchSelfbot
-A bot that auto reacts to events with configured replies in twitch chat.
+# Twitchbot
+A generic twitch chat bot, provided as an example for the [NTwitch](https://github.com/Aux/NTwitch) library.
 
 #### Example config.yml
 ```yaml
