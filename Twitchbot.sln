@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitchSelfbot", "src/TwitchSelfbot/TwitchSelfbot.csproj", "{88C4DAD2-E8E1-4D87-9053-3A274D10E353}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitchbot", "src/Twitchbot/Twitchbot.csproj", "{88C4DAD2-E8E1-4D87-9053-3A274D10E353}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

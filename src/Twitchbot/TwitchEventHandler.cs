@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace TwitchSelfbot
+namespace Twitchbot
 {
     public class TwitchEventHandler
     {

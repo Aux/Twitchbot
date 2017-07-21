@@ -3,7 +3,7 @@ using NTwitch.Chat;
 using System;
 using System.Threading.Tasks;
 
-namespace TwitchSelfbot
+namespace Twitchbot
 {
     class Program
     {

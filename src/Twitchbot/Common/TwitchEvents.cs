@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using YamlDotNet.Serialization;
 
-namespace TwitchSelfbot
+namespace Twitchbot
 {
     public class TwitchEvents
     {

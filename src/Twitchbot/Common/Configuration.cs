@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using YamlDotNet.Serialization;
 
-namespace TwitchSelfbot
+namespace Twitchbot
 {
     public class Configuration
     {
