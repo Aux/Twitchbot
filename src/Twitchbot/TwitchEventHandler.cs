@@ -1,5 +1,4 @@
 ﻿using NTwitch.Chat;
-using System;
 using System.Threading.Tasks;
 
 namespace Twitchbot
@@ -8,13 +7,11 @@ namespace Twitchbot
     {
         private readonly TwitchChatClient _client;
         private readonly Configuration _config;
-        private readonly Random _random;
 
         public TwitchEventHandler(TwitchChatClient client, Configuration config)
         {
             _client = client;
             _config = config;
-            _random = new Random();
 
             if (_config.Events.NewSubReplies != null || _config.Events.ReSubReplies != null)
                 _client.MessageReceived += OnMessageReceivedAsync;
@@ -28,24 +25,72 @@ namespace Twitchbot
                 _client.UserBanned += OnUserBannedAsync;
         }
 
-        private Task OnMessageReceivedAsync(ChatMessage msg)
+        private async Task OnMessageReceivedAsync(ChatMessage msg)
         {
-            throw new NotImplementedException();
+            if (msg is ChatNoticeMessage notice)
+            {
+                if (notice.Type == "sub")
+                {
+                    var selected = _config.Events.GetNewSubReply();
+                    if (selected == null)
+                        return;
+
+                    selected = selected.Replace("%channel%", notice.Channel.Name)
+                                       .Replace("%user%", notice.User.DisplayName)
+                                       .Replace("%months%", notice.Months.ToString());
+                    await notice.Channel.SendMessageAsync(selected);
+                }
+                else if (notice.Type == "resub")
+                {
+                    var selected = _config.Events.GetReSubReply();
+                    if (selected == null)
+                        return;
+
+                    selected = selected.Replace("%channel%", notice.Channel.Name)
+                                       .Replace("%user%", notice.User.DisplayName)
+                                       .Replace("%months%", notice.Months.ToString());
+                    await notice.Channel.SendMessageAsync(selected);
+                }
+            }
         }
 
-        private Task OnHostingStartedAsync(Cacheable<string, ChatSimpleChannel> host, Cacheable<string, ChatSimpleChannel> channel, int viewers)
+        private async Task OnHostingStartedAsync(Cacheable<string, ChatSimpleChannel> host, Cacheable<string, ChatSimpleChannel> channel, int viewers)
         {
-            throw new NotImplementedException();
+            var selected = _config.Events.GetHostingStartedReply();
+            if (selected == null)
+                return;
+
+            selected = selected.Replace("%host%", host.Key)
+                               .Replace("%channel%", channel.Key)
+                               .Replace("%viewers%", viewers.ToString());
+            if (host.HasValue)
+                await host.Value.SendMessageAsync(selected);
         }
 
-        private Task OnHostingStoppedAsync(Cacheable<string, ChatSimpleChannel> host, int viewers)
+        private async Task OnHostingStoppedAsync(Cacheable<string, ChatSimpleChannel> host, int viewers)
         {
-            throw new NotImplementedException();
+            var selected = _config.Events.GetHostingStoppedReply();
+            if (selected == null)
+                return;
+
+            selected = selected.Replace("%host%", host.Key)
+                               .Replace("%viewers%", viewers.ToString());
+            if (host.HasValue)
+                await host.Value.SendMessageAsync(selected);
         }
 
-        private Task OnUserBannedAsync(ChatSimpleChannel channel, ChatSimpleUser user, BanOptions ban)
+        private async Task OnUserBannedAsync(ChatSimpleChannel channel, ChatSimpleUser user, BanOptions ban)
         {
-            throw new NotImplementedException();
+            var selected = _config.Events.GetUserBannedReply();
+            if (selected == null)
+                return;
+
+            selected = selected.Replace("%channel%", channel.Name)
+                               .Replace("%user%", user.DisplayName)
+                               .Replace("%duration%", ban.Duration.ToString())
+                               .Replace("%reason%", ban.Reason);
+            
+            await channel.SendMessageAsync(selected);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Twitchbot
         public static void Create()
         {
             var contents = "# A Twitch oauth token the bot will use to log in to chat\r\n" +
-                           "token: oi1j2o3i\r\n\r\n" +
+                           "token: yourtokenhere\r\n\r\n" +
                            "# Channels the bot will join after connecting to chat\r\n" +
                            "channels:\r\n" +
                            "  - auxesistv\r\n" +
@@ -38,8 +38,7 @@ namespace Twitchbot
                            "# All events the bot should reply to. Replies are\r\n" +
                            "# randomly selected from list provided for each event\r\n#\r\n" +
                            "# Available events: new_sub, re_sub, hosting_started,\r\n" +
-                           "# hosting_stopped, user_banned\r\n#\r\n" +
-                           "# Available variables: %user%, %channel%\r\n" +
+                           "# hosting_stopped, user_banned\r\n" +
                            "events:\r\n" +
                            "  new_sub:\r\n" +
                            "    - Thanks for subscribing %user% Kappa\r\n" +
