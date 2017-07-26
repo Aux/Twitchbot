@@ -10,8 +10,9 @@ namespace Twitchbot
         public static void Main(string[] args)
             => new Program().StartAsync().GetAwaiter().GetResult();
 
-        private TwitchEventHandler _handler;
+        private TwitchEventHandler _events;
         private TwitchChatClient _client;
+        private CommandHandler _commands;
         private Configuration _config;
 
         public async Task StartAsync()
@@ -30,7 +31,8 @@ namespace Twitchbot
             {
                 LogLevel = LogSeverity.Info
             });
-            _handler = new TwitchEventHandler(_client, _config);
+            _events = new TwitchEventHandler(_client, _config);
+            _commands = new CommandHandler(_client, _config);
             
             _client.Log += OnLogAsync;
             _client.Connected += OnConnectedAsync;
